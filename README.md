@@ -6,6 +6,7 @@ On NuGet at: https://www.nuget.org/packages/UtcMilliTime/
 On GitHub at: https://github.com/JPKusumi/UtcMilliTime
 
 ## Versions
+- **2.2.1**: Fixed nullability warnings and improved NuGet README display. Includes all v2.2.0 features (chaining extensions).
 - **2.2.0**: Added chaining extensions for Unix timestamps (add/subtract for days, hours, minutes, seconds). Updated README with resources link to JPKusumi.com.
 - **2.1.0**: Ready for .NET 10; still good for .NET 8+. Accuracy: 1ms (improved precision)
 - **2.0.0**: First update in six years went cross-platform. Good for .NET 8+.
@@ -18,7 +19,7 @@ UtcMilliTime provides `Int64` timestamps (milliseconds since 1/1/1970 UTC, exclu
 
 ## Installation
 ```
-dotnet add package UtcMilliTime --version 2.2.0
+dotnet add package UtcMilliTime --version 2.2.1
 ```
 For legacy projects:
 ```
@@ -80,7 +81,7 @@ Clock.Time.NetworkTimeAcquired += (sender, e) => Console.WriteLine($"Synced with
 - **Performance**: Use `Now` for maximum performance; `ToIso8601String` is slower due to `DateTime`.
 
 ### Upgrading from 1.0.1
-Version 2.2.0: Added chaining extensions for Unix timestamps. Public API unchanged (static `Clock.Time.Now` still works as a singleton).
+Version 2.2.1: Fixed nullability warnings and improved NuGet README display. Public API unchanged (static `Clock.Time.Now` still works as a singleton).
 
 Migration: Static usage remains the same; for async Main use `await Clock.CreateAsync()`—it returns the shared clock.
 
@@ -88,12 +89,12 @@ Migration: Static usage remains the same; for async Main use `await Clock.Create
 Calculates with `Stopwatch.GetTimestamp` for high resolution uptime and `DateTime.UtcNow` for device time. Now is calculated as `device_boot_time + GetHighResUptime`. The clock is a singleton to ensure consistent time across the app.
 
 ## Resources and Community
-For more information, blog posts, and updates on this and other JP Kusumi creations, visit the [JPKusumi.com](https://jpkusumi.com). Recent blog posts include:
+For more information, blog posts, and updates on this and other JP Kusumi creations, visit [JPKusumi.com](https://jpkusumi.com). Recent blog posts include:
 - Key and nonce management best practices.
 - Handling cryptographic metadata securely.
 - Encrypting JWTs with post-quantum tools.
 
-JPKusumi.com aims to be a hub for .NET development. There is also a discussion forum, open in the [GitHub repo for GreenfieldPQC](https://github.com/JPKusumi/GreenfieldPQC/discussions). Comments and feedback may be directed there.
+JPKusumi.com aims to be a resource for .NET development. There is also a discussion forum, open in the [GitHub repo for GreenfieldPQC](https://github.com/JPKusumi/GreenfieldPQC/discussions). Comments and feedback may be directed there.
 
 ### License
 MIT License
