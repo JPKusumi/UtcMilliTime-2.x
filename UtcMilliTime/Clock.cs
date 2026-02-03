@@ -9,7 +9,7 @@ namespace UtcMilliTime
 {
     public sealed class Clock : ITime
     {
-        private static readonly Lazy<Clock> instance = new Lazy<Clock>(() => new Clock());
+        private static readonly Lazy<Clock> instance = new(() => new Clock());
         public static Clock Time => instance.Value;
 
         private static bool successfully_synced;
@@ -63,7 +63,7 @@ namespace UtcMilliTime
             var clock = Time; // Ensure lazy singleton init (sync, device time)
             return Task.FromResult(clock); // Return immediately; no await needed yet
         }
-        private void NetworkChange_NetworkAvailabilityChanged(object sender, NetworkAvailabilityEventArgs e)
+        private void NetworkChange_NetworkAvailabilityChanged(object? sender, NetworkAvailabilityEventArgs e)
         {
             if (Indicated)
             {
@@ -105,8 +105,9 @@ namespace UtcMilliTime
 
             ntpCall = new NTPCallState
             {
-                priorSyncState = successfully_synced  // Added back to capture pre-sync state
+                priorSyncState = successfully_synced
             };
+            // latency already started in NTPCallState constructor - no need to start it here
             try
             {
                 Initialize();
@@ -159,11 +160,11 @@ namespace UtcMilliTime
                 device_boot_time = timeNow - highResUptime;
                 Skew = timeNow - GetDeviceTime(); // Simple original calc
                 successfully_synced = ntpCall.methodsCompleted == 3;
-                ntpCall.latency.Stop();
+                ntpCall.latency!.Stop();
 
                 if (successfully_synced && !ntpCall.priorSyncState && NetworkTimeAcquired != null)
                 {
-                    NTPEventArgs args = new NTPEventArgs(ntpCall.serverResolved, ntpCall.latency.ElapsedMilliseconds, Skew);
+                    NTPEventArgs args = new(ntpCall.serverResolved, ntpCall.latency?.ElapsedMilliseconds ?? 0, Skew);
                     NetworkTimeAcquired.Invoke(this, args);
                 }
             }
