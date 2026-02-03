@@ -7,32 +7,34 @@
     <Company>JPKusumi</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/JPKusumi/UtcMilliTime</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/JPKusumi/UtcMilliTime-2.0.0</RepositoryUrl>
+    <RepositoryUrl>https://github.com/JPKusumi/UtcMilliTime</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Description>UtcMilliTime for .NET 8.0 + .NET 10+ provides Unix time milliseconds (Int64) timestamps, similar to JavaScript's Date.now(), with cross-platform support and NTP synchronization. Features Task-based async APIs, async Main support, and conversion extensions (ToIso8601String, ToUtcDateTime, etc.).
+    <Description>
+      UtcMilliTime for .NET 8.0 + .NET 10+ provides Unix time milliseconds (Int64) timestamps, similar to JavaScript's Date.now(), with cross-platform support and NTP synchronization. Features Task-based async APIs, async Main support, conversion extensions (ToIso8601String, ToUtcDateTime, etc.), and new chaining methods for timestamp manipulations (e.g., AddHours, SubtractDays).
 
-Usage:
-using UtcMilliTime;
-ITime time = Clock.Time;
-time.SuppressNetworkCalls = false; // Enable NTP sync
-var timestamp = time.Now; // Int64 timestamp
-string iso = timestamp.ToIso8601String(); // ISO-8601 string
+      Usage:
+      using UtcMilliTime;
+      ITime time = Clock.Time;
+      time.SuppressNetworkCalls = false; // Enable NTP sync
+      var timestamp = time.Now; // Int64 timestamp
+      string iso = timestamp.ToIso8601String(); // ISO-8601 string
 
-For async Main:
-await Clock.CreateAsync();
+      For async Main:
+      await Clock.CreateAsync();
 
-See https://github.com/JPKusumi/UtcMilliTime for details.</Description>
-    <Copyright>2019-2025</Copyright>
+      See https://github.com/JPKusumi/UtcMilliTime for details.
+    </Description>
+    <Copyright>2019-2026</Copyright>
     <Product>UtcMilliTime for .NET by JPKusumi</Product>
     <PackageTags>time timestamp csharp c-sharp clock ntp ntp-client unix-timestamp milliseconds date datetime timezone calendar unix-epoch timestamps ntpclient-library utcmillitime unixtimemilliseconds cross-platform</PackageTags>
-    <PackageReleaseNotes>Version 2.1.0: High resolution time via Stopwatch improves accuracy, and the version preserves all APIs, UX, features, and extension methods of earlier versions, and is ready for .NET 10. See https://github.com/JPKusumi/UtcMilliTime.</PackageReleaseNotes>
-    <Version>2.1.0</Version>
+    <PackageReleaseNotes>Version 2.2.0: Added chaining extensions for Unix timestamps (add/subtract for days, hours, minutes, seconds). Preserves all prior APIs and features; ready for .NET 10. See https://github.com/JPKusumi/UtcMilliTime.</PackageReleaseNotes>
+    <Version>2.2.0</Version>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="readme.txt">
-      <Pack>true</Pack>
-      <PackagePath>\</PackagePath>
-    </Content>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>/</PackagePath>
+    </None>
   </ItemGroup>
 </Project>

@@ -110,6 +110,107 @@ public static partial class Extensions
     {
         return TimeSpan.FromMilliseconds(interval).Seconds;
     }
+    // Additive and subtractive operations for chaining in auth/timing flows (operate on Unix seconds for JWT claims, etc.)
+    /// <summary>
+    /// Truncates UtcMilliTime to UnixTimeSeconds (divides by 1000). Alias for ToUnixTime for explicitness.
+    /// </summary>
+    public static long ToUnixTimeSeconds(this long timestamp) => timestamp.ToUnixTime();
+
+    /// <summary>
+    /// Adds the specified number of days to a Unix time in seconds, returning a new timestamp.
+    /// </summary>
+    /// <param name="unixSeconds">The Unix time in seconds.</param>
+    /// <param name="days">The number of days to add (must be non-negative).</param>
+    /// <returns>A new Unix time in seconds.</returns>
+    public static long AddDays(this long unixSeconds, int days)
+    {
+        if (days < 0) throw new ArgumentOutOfRangeException(nameof(days), "Days must be non-negative.");
+        return unixSeconds + (days * 86400L);  // 86,400 seconds per day
+    }
+
+    /// <summary>
+    /// Subtracts the specified number of days from a Unix time in seconds, returning a new timestamp.
+    /// </summary>
+    /// <param name="unixSeconds">The Unix time in seconds.</param>
+    /// <param name="days">The number of days to subtract (must be non-negative).</param>
+    /// <returns>A new Unix time in seconds.</returns>
+    public static long SubtractDays(this long unixSeconds, int days)
+    {
+        if (days < 0) throw new ArgumentOutOfRangeException(nameof(days), "Days must be non-negative.");
+        return unixSeconds - (days * 86400L);
+    }
+
+    /// <summary>
+    /// Adds the specified number of hours to a Unix time in seconds, returning a new timestamp.
+    /// </summary>
+    /// <param name="unixSeconds">The Unix time in seconds.</param>
+    /// <param name="hours">The number of hours to add (must be non-negative).</param>
+    /// <returns>A new Unix time in seconds.</returns>
+    public static long AddHours(this long unixSeconds, int hours)
+    {
+        if (hours < 0) throw new ArgumentOutOfRangeException(nameof(hours), "Hours must be non-negative.");
+        return unixSeconds + (hours * 3600L);
+    }
+
+    /// <summary>
+    /// Subtracts the specified number of hours from a Unix time in seconds, returning a new timestamp.
+    /// </summary>
+    /// <param name="unixSeconds">The Unix time in seconds.</param>
+    /// <param name="hours">The number of hours to subtract (must be non-negative).</param>
+    /// <returns>A new Unix time in seconds.</returns>
+    public static long SubtractHours(this long unixSeconds, int hours)
+    {
+        if (hours < 0) throw new ArgumentOutOfRangeException(nameof(hours), "Hours must be non-negative.");
+        return unixSeconds - (hours * 3600L);
+    }
+
+    /// <summary>
+    /// Adds the specified number of minutes to a Unix time in seconds, returning a new timestamp.
+    /// </summary>
+    /// <param name="unixSeconds">The Unix time in seconds.</param>
+    /// <param name="minutes">The number of minutes to add (must be non-negative).</param>
+    /// <returns>A new Unix time in seconds.</returns>
+    public static long AddMinutes(this long unixSeconds, int minutes)
+    {
+        if (minutes < 0) throw new ArgumentOutOfRangeException(nameof(minutes), "Minutes must be non-negative.");
+        return unixSeconds + (minutes * 60L);
+    }
+
+    /// <summary>
+    /// Subtracts the specified number of minutes from a Unix time in seconds, returning a new timestamp.
+    /// </summary>
+    /// <param name="unixSeconds">The Unix time in seconds.</param>
+    /// <param name="minutes">The number of minutes to subtract (must be non-negative).</param>
+    /// <returns>A new Unix time in seconds.</returns>
+    public static long SubtractMinutes(this long unixSeconds, int minutes)
+    {
+        if (minutes < 0) throw new ArgumentOutOfRangeException(nameof(minutes), "Minutes must be non-negative.");
+        return unixSeconds - (minutes * 60L);
+    }
+
+    /// <summary>
+    /// Adds the specified number of seconds to a Unix time in seconds, returning a new timestamp.
+    /// </summary>
+    /// <param name="unixSeconds">The Unix time in seconds.</param>
+    /// <param name="seconds">The number of seconds to add (must be non-negative).</param>
+    /// <returns>A new Unix time in seconds.</returns>
+    public static long AddSeconds(this long unixSeconds, int seconds)
+    {
+        if (seconds < 0) throw new ArgumentOutOfRangeException(nameof(seconds), "Seconds must be non-negative.");
+        return unixSeconds + seconds;
+    }
+
+    /// <summary>
+    /// Subtracts the specified number of seconds from a Unix time in seconds, returning a new timestamp.
+    /// </summary>
+    /// <param name="unixSeconds">The Unix time in seconds.</param>
+    /// <param name="seconds">The number of seconds to subtract (must be non-negative).</param>
+    /// <returns>A new Unix time in seconds.</returns>
+    public static long SubtractSeconds(this long unixSeconds, int seconds)
+    {
+        if (seconds < 0) throw new ArgumentOutOfRangeException(nameof(seconds), "Seconds must be non-negative.");
+        return unixSeconds - seconds;
+    }
     /// <summary>
     /// Safely fire-and-forget an async task with optional exception handling.
     /// </summary>
