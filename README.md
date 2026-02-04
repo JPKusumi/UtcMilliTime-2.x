@@ -9,9 +9,10 @@ On NuGet at: https://www.nuget.org/packages/UtcMilliTime/
 On GitHub at: https://github.com/JPKusumi/UtcMilliTime
 
 ## Versions
-- **2.2.2**: Patch for NuGet to pick up README.md. Includes all v2.2.1 features.
-- **2.2.1**: Fixed nullability warnings and improved NuGet README display. Includes all v2.2.0 features (chaining extensions).
-- **2.2.0**: Added chaining extensions for Unix timestamps (add/subtract for days, hours, minutes, seconds). Updated README with resources link to JPKusumi.com.
+- **2.2.3**: Patch for NuGet to pick up README.md. Includes all v2.2 features (chaining extensions).
+- **2.2.2**: Patch for NuGet to pick up README.md. Includes all v2.2 features (chaining extensions).
+- **2.2.1**: Fixed nullability warnings and improved NuGet README display. Includes all v2.2 features (chaining extensions).
+- **2.2.0**: Added chaining extensions for Unix timestamps (add/subtract for days, hours, minutes, seconds).
 - **2.1.0**: Ready for .NET 10; still good for .NET 8+. Accuracy: 1ms (improved precision)
 - **2.0.0**: First update in six years went cross-platform. Good for .NET 8+.
 - **1.0.1**: .NET Standard 2.0 (Windows-only, .NET Framework 4.6.1+, .NET Core 2.0+).
@@ -23,7 +24,7 @@ UtcMilliTime provides `Int64` timestamps (milliseconds since 1/1/1970 UTC, exclu
 
 ## Installation
 ```
-dotnet add package UtcMilliTime --version 2.2.2
+dotnet add package UtcMilliTime --version 2.2.3
 ```
 For legacy projects:
 ```
@@ -85,7 +86,7 @@ Clock.Time.NetworkTimeAcquired += (sender, e) => Console.WriteLine($"Synced with
 - **Performance**: Use `Now` for maximum performance; `ToIso8601String` is slower due to `DateTime`.
 
 ### Upgrading from 1.0.1
-Version 2.2.2: Improved NuGet README display. Public API unchanged (static `Clock.Time.Now` still works as a singleton).
+Version 2.2.3: Public API unchanged (static `Clock.Time.Now` still works as a singleton).
 
 Migration: Static usage remains the same; for async Main use `await Clock.CreateAsync()`—it returns the shared clock.
 
