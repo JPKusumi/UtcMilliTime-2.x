@@ -27,12 +27,12 @@
     <Copyright>2019-2026</Copyright>
     <Product>UtcMilliTime for .NET by JPKusumi</Product>
     <PackageTags>time timestamp csharp c-sharp clock ntp ntp-client unix-timestamp milliseconds date datetime timezone calendar unix-epoch timestamps ntpclient-library utcmillitime unixtimemilliseconds cross-platform</PackageTags>
-    <PackageReleaseNotes>Version 2.2.1: Fixed nullability warnings and improved NuGet README display. Includes all v2.2.0 features (chaining extensions). See https://github.com/JPKusumi/UtcMilliTime.</PackageReleaseNotes>
-    <Version>2.2.1</Version>
+    <PackageReleaseNotes>Version 2.2.2: Patch for NuGet to pick up README.md. Includes all v2.2.1 features (chaining extensions). See https://github.com/JPKusumi/UtcMilliTime.</PackageReleaseNotes>
+    <Version>2.2.2</Version>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReadmeFile Include="..\README.md" />
+    <PackageReadmeFile Include="..\README.md" Pack="true" />
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>/</PackagePath>
