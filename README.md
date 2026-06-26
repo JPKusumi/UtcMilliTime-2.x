@@ -1,3 +1,8 @@
+> **⚠️ This is an archived version (v2.x).**  
+> The current version of UtcMilliTime is available here:  
+> **https://github.com/JPKusumi/UtcMilliTime**
+
+---
 | **[JPKusumi.com](https://jpkusumi.com) presents—** |
 |:---------------------:|
 
